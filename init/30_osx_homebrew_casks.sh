@@ -22,7 +22,6 @@ casks=(
   alfred
   android-platform-tools  
   bettertouchtool
-  charles
   chromium
   chronosync
   docker

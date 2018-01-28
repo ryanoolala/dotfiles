@@ -90,12 +90,6 @@ if is_ubuntu_desktop; then
   apt_source_texts+=("deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main")
   apt_packages+=(google-chrome-stable)
 
-  # https://www.charlesproxy.com/documentation/installation/apt-repository/
-  apt_keys+=(https://www.charlesproxy.com/packages/apt/PublicKey)
-  apt_source_files+=(charles)
-  apt_source_texts+=("deb https://www.charlesproxy.com/packages/apt/ charles-proxy3 main")
-  apt_packages+=(charles-proxy)
-
   # https://github.com/aluxian/Messenger-for-Desktop#linux
   apt_keys+=('--keyserver pool.sks-keyservers.net --recv 6DDA23616E3FE905FFDA152AE61DA9241537994D')
   apt_source_files+=(aluxian)
@@ -113,6 +107,13 @@ if is_ubuntu_desktop; then
   apt_source_files+=(virtualbox)
   apt_source_texts+=("deb http://download.virtualbox.org/virtualbox/debian $release_name contrib")
   apt_packages+=(virtualbox-5.1)
+
+
+  # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+  apt_keys+=(https://download.docker.com/linux/ubuntu/gpg)
+  apt_source_files+=(docker)
+  apt_source_texts+=("deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable)"
+  apt_packages+=(docker-ce)
 
   # http://askubuntu.com/a/190674
   add_ppa ppa:webupd8team/java
@@ -179,7 +180,7 @@ if is_ubuntu_desktop; then
     steam_root=http://repo.steampowered.com/steam/pool/steam/s/steam/
     steam_file="$(wget -q -O- "$steam_root?C=M;O=D" | sed -En '/steam-launcher/{s/.*href="([^"]+)".*/\1/;p;q;}')"
     echo "$steam_root$steam_file"
-  }
+  }  
 fi
 
 function other_stuff() {
