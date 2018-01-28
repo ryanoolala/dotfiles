@@ -110,10 +110,11 @@ if is_ubuntu_desktop; then
 
 
   # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
-  apt_keys+=(https://download.docker.com/linux/ubuntu/gpg)
-  apt_source_files+=(docker)
-  apt_source_texts+=("deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable)"
-  apt_packages+=(docker-ce)
+
+  #apt_keys+=(https://download.docker.com/linux/ubuntu/gpg)
+  #apt_source_files+=(docker)
+ # apt_source_texts+=("deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable)"
+ # apt_packages+=(docker-ce)
 
   # http://askubuntu.com/a/190674
   add_ppa ppa:webupd8team/java
@@ -122,6 +123,9 @@ if is_ubuntu_desktop; then
     echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
     echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
   }
+
+  add_ppa ppa:nathan-renniewaldock/flux
+  apt_packages+=(fluxgui)
 
   # Misc
   apt_packages+=(adb fastboot)
