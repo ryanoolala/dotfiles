@@ -179,6 +179,7 @@ if is_ubuntu_desktop; then
     steam_root=http://repo.steampowered.com/steam/pool/steam/s/steam/
     steam_file="$(wget -q -O- "$steam_root?C=M;O=D" | sed -En '/steam-launcher/{s/.*href="([^"]+)".*/\1/;p;q;}')"
     echo "$steam_root$steam_file"
+  }
 fi
 
 function other_stuff() {
