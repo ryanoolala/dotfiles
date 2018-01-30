@@ -129,8 +129,8 @@ if is_ubuntu_desktop; then
   apt_packages+=(spotify-client)
 
   #http://www.webupd8.org/2015/01/install-official-telegram-desktop-app.html
-  add_ppa ppa:atareao/telegram
-  apt_packages+=(telegram)
+  # add_ppa ppa:atareao/telegram
+  # apt_packages+=(telegram)
 
   add_ppa ppa:openrazer/stable
   apt_packages+=(openrazer-meta)
