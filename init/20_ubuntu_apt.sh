@@ -128,6 +128,10 @@ if is_ubuntu_desktop; then
   apt_source_texts+=("deb http://repository.spotify.com stable non-free")
   apt_packages+=(spotify-client)
 
+  #http://www.webupd8.org/2015/01/install-official-telegram-desktop-app.html
+  add_ppa ppa:atareao/telegram
+  apt_packages+=(telegram)
+
   # http://askubuntu.com/a/190674
   add_ppa ppa:webupd8team/java
   apt_packages+=(oracle-java8-installer)
