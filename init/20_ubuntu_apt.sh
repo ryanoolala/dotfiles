@@ -123,7 +123,7 @@ if is_ubuntu_desktop; then
   apt_packages+=(sublime-text)
 
   #http://howtoubuntu.org/how-to-install-spotify-in-ubuntu
-  apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886')
+  apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410')
   apt_source_files+=(spotify)
   apt_source_texts+=("deb http://repository.spotify.com stable non-free")
   apt_packages+=(spotify-client)
