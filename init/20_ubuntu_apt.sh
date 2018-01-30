@@ -111,11 +111,22 @@ if is_ubuntu_desktop; then
 
 
   # https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+  apt_keys+=(https://download.docker.com/linux/ubuntu/gpg)
+  apt_source_files+=(docker)
+  apt_source_texts+=("deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable")
+  apt_packages+=(docker-ce)
 
-  #apt_keys+=(https://download.docker.com/linux/ubuntu/gpg)
-  #apt_source_files+=(docker)
- # apt_source_texts+=("deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable)"
- # apt_packages+=(docker-ce)
+  #http://tipsonubuntu.com/2017/05/30/install-sublime-text-3-ubuntu-16-04-official-way/
+  apt_keys+=(https://download.sublimetext.com/sublimehq-pub.gpg)
+  apt_source_files+=(sublime-text-3)
+  apt_source_texts+=("deb https://download.sublimetext.com/ apt/stable/")
+  apt_packages+=(sublime-text)
+
+  #http://howtoubuntu.org/how-to-install-spotify-in-ubuntu
+  apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886')
+  apt_source_files+=(spotify)
+  apt_source_texts+=("deb http://repository.spotify.com stable non-free")
+  apt_packages+=(spotify)
 
   # http://askubuntu.com/a/190674
   add_ppa ppa:webupd8team/java

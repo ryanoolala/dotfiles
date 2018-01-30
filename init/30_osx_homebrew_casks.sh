@@ -20,7 +20,7 @@ casks=(
   # Applications
   a-better-finder-rename
   alfred
-  android-platform-tools  
+  android-platform-tools
   bettertouchtool
   chromium
   chronosync
@@ -37,6 +37,7 @@ casks=(
   slack
   spotify
   steam
+  sublime-text
   the-unarchiver
   vagrant
   virtualbox
