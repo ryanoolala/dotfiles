@@ -132,6 +132,9 @@ if is_ubuntu_desktop; then
   add_ppa ppa:atareao/telegram
   apt_packages+=(telegram)
 
+  add_ppa ppa:openrazer/stable
+  apt_packages+=(openrazer-meta)
+
   # http://askubuntu.com/a/190674
   add_ppa ppa:webupd8team/java
   apt_packages+=(oracle-java8-installer)
