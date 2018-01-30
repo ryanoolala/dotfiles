@@ -110,6 +110,33 @@ main() {
   echo 'p.p.s. Get stickers and t-shirts at https://shop.planetargon.com.'
   echo ''
   printf "${NORMAL}"
+
+  cat > ~/.oh-my-zsh/themes/wezm-ryan.zsh-theme <<EOL
+  #PROMPT='$(git_prompt_info)%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )%{$fg[yellow]%}%#%{$reset_color%} '
+  #RPROMPT='%{$fg[green]%}%~%{$reset_color%}'
+
+  #ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}("
+  #ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+  #ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%})%{$fg[red]%}⚡%{$reset_color%}"
+  #ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+  # NVM info
+  local nvm_info='$(nvm_prompt_info)'
+  ZSH_THEME_NVM_PROMPT_PREFIX="%{$fg[green]%}⬢ "
+  ZSH_THEME_NVM_PROMPT_SUFFIX=""
+
+  CRUNCH_BRACKET_COLOR="%{$fg[white]%}"
+  CRUNCH_TIME_COLOR="%{$fg[yellow]%}"
+  CRUNCH_TIME_="$CRUNCH_BRACKET_COLOR{$CRUNCH_TIME_COLOR%T$CRUNCH_BRACKET_COLOR}%{$reset_color%}"
+
+  PROMPT='$(git_prompt_info)%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )%{$fg[yellow]%}%#%{$reset_color%} '
+  RPROMPT="${nvm_info}%  %{$FG[098]%}%~%{$reset_color%} $CRUNCH_TIME_"
+
+  ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}("
+  ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+  ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%})%{$fg[red]%}⚡%{$reset_color%}"
+  ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+  EOL
+
   env zsh
 }
 
