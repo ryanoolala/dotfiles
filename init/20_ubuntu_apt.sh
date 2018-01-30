@@ -126,7 +126,7 @@ if is_ubuntu_desktop; then
   apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886')
   apt_source_files+=(spotify)
   apt_source_texts+=("deb http://repository.spotify.com stable non-free")
-  apt_packages+=(spotify)
+  apt_packages+=(spotify-client)
 
   # http://askubuntu.com/a/190674
   add_ppa ppa:webupd8team/java
