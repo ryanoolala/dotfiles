@@ -151,6 +151,9 @@ if is_ubuntu_desktop; then
    add_ppa ppa:phoerious/keepassxc
    apt_packages+=(keepassxc)
 
+   add_ppa ppa:plushuang-tw/uget-stable
+   apt_packages+=(uget)
+
   # Misc
   apt_packages+=(adb fastboot)
   apt_packages+=(
