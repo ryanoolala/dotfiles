@@ -146,6 +146,11 @@ if is_ubuntu_desktop; then
   add_ppa ppa:nathan-renniewaldock/flux
   apt_packages+=(fluxgui)
 
+#  add_ppa ppa:jtaylor/keepass
+ # apt_packages+=(keepass2)
+   add_ppa ppa:phoerious/keepassxc
+   apt_packages+=(keepassxc)
+
   # Misc
   apt_packages+=(adb fastboot)
   apt_packages+=(

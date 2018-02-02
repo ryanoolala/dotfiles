@@ -67,18 +67,18 @@ main() {
   }
 
 
-  printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
-  if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
-    printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
-    mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
-  fi
+ # printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
+  #if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
+  #  printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
+  #  mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
+#  fi
 
-  printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
-  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
-  sed "/^export ZSH=/ c\\
-  export ZSH=$ZSH
-  " ~/.zshrc > ~/.zshrc-omztemp
-  mv -f ~/.zshrc-omztemp ~/.zshrc
+#  printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
+#  cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
+#  sed "/^export ZSH=/ c\\
+#  export ZSH=$ZSH
+#  " ~/.zshrc > ~/.zshrc-omztemp
+#  mv -f ~/.zshrc-omztemp ~/.zshrc
 
   # If this user's login shell is not already "zsh", attempt to switch.
   TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
@@ -111,7 +111,7 @@ main() {
   echo ''
   printf "${NORMAL}"
 
-  cat <<EOF > ~/.oh-my-zsh/themes/wezm-ryan.zsh-theme
+  cat <<'EOF' > ~/.oh-my-zsh/themes/wezm-ryan.zsh-theme
 #PROMPT='$(git_prompt_info)%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )%{$fg[yellow]%}%#%{$reset_color%} '
 #RPROMPT='%{$fg[green]%}%~%{$reset_color%}'
 
@@ -128,7 +128,7 @@ CRUNCH_BRACKET_COLOR="%{$fg[white]%}"
 CRUNCH_TIME_COLOR="%{$fg[yellow]%}"
 CRUNCH_TIME_="$CRUNCH_BRACKET_COLOR{$CRUNCH_TIME_COLOR%T$CRUNCH_BRACKET_COLOR}%{$reset_color%}"
 
-PROMPT='$(git_prompt_info)%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )%{$fg[yellow]%}%#%{$reset_color%} '
+#PROMPT='$(git_prompt_info)%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )%{$fg[yellow]%}%#%{$reset_color%} '
 RPROMPT="${nvm_info}%  %{$FG[098]%}%~%{$reset_color%} $CRUNCH_TIME_"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}("

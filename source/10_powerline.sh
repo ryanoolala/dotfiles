@@ -1,3 +1,4 @@
+if [ -n "$BASH_VERSION" ]; then
 if [[ "$(which powerline-daemon)" ]]; then
   # Powerline stuff.
   export POWERLINE_PREFIX="$(python -c "import powerline; print powerline.__path__[0]")"
@@ -56,4 +57,5 @@ if [[ "$(which powerline-daemon)" ]]; then
   else
     __set_powerline_command_args
   fi
+fi
 fi
