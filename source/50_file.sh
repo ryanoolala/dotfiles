@@ -12,10 +12,10 @@ else
 fi
 
 # Directory listing
-if [ -n "$ZSH_VERSION" ]; then 
+if [ -n $ZSH_VERSION ]; then 
   alias ll='ls -al'
   alias lsd='CLICOLOR_FORCE=1 ll | grep --color=never "^d"'
-elif [-n "%BASH_VERSION"]; then
+elif [-n $BASH_VERSION]; then
   if [[ "$(type -P tree)" ]]; then
     alias ll='tree --dirsfirst -aLpughDFiC 1'
     alias lsd='ll -d'

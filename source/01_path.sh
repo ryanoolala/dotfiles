@@ -6,7 +6,6 @@ paths=(
   /bin
   $DOTFILES/bin
 )
-echo hello
 export PATH
 for p in "${paths[@]}"; do
   [[ -d "$p" ]] && PATH="$p:$(path_remove "$p")"
