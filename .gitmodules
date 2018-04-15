@@ -1,12 +1,6 @@
-[submodule "link/.tmux/plugins/tpm"]
-	path = link/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
 [submodule "vendor/git-extras"]
 	path = vendor/git-extras
 	url = https://github.com/tj/git-extras
-[submodule "vendor/z"]
-	path = vendor/z
-	url = https://github.com/rupa/z
 [submodule "vendor/liquidprompt"]
 	path = vendor/liquidprompt
 	url = https://github.com/nojhan/liquidprompt.git

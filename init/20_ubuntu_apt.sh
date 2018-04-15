@@ -31,6 +31,8 @@ apt_packages+=(
   cowsay
   curl
   git-core
+  gnome-icon-theme
+  thunar
   htop
   imagemagick
   jq
@@ -40,7 +42,7 @@ apt_packages+=(
   silversearcher-ag
   telnet
   tree
-  zsh
+#  zsh
 )
 
 apt_packages+=(vim)
@@ -51,9 +53,9 @@ add_ppa ppa:neovim-ppa/stable
 apt_packages+=(neovim)
 
 # https://launchpad.net/~stebbins/+archive/ubuntu/handbrake-releases
-add_ppa ppa:stebbins/handbrake-releases
-apt_packages+=(handbrake-cli)
-is_ubuntu_desktop && apt_packages+=(handbrake-gtk)
+#add_ppa ppa:stebbins/handbrake-releases
+#apt_packages+=(handbrake-cli)
+#is_ubuntu_desktop && apt_packages+=(handbrake-gtk)
 
 # https://github.com/rvm/ubuntu_rvm
 add_ppa ppa:rael-gc/rvm
@@ -76,8 +78,8 @@ if is_ubuntu_desktop; then
   # apt_source_texts+=("deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /")
   # apt_packages+=(arc-theme)
 
-  add_ppa ppa:fossfreedom/arc-gtk-theme-daily
-  apt_packages+=(arc-theme)
+ # add_ppa ppa:fossfreedom/arc-gtk-theme-daily
+ # apt_packages+=(arc-theme)
 
   # https://github.com/tagplus5/vscode-ppa
   apt_keys+=(https://tagplus5.github.io/vscode-ppa/ubuntu/gpg.key)
@@ -132,16 +134,13 @@ if is_ubuntu_desktop; then
   add_ppa ppa:atareao/telegram
   apt_packages+=(telegram)
 
-  add_ppa ppa:openrazer/stable
-  apt_packages+=(openrazer-meta)
-
   # http://askubuntu.com/a/190674
-  add_ppa ppa:webupd8team/java
-  apt_packages+=(oracle-java8-installer)
-  function preinstall_oracle-java8-installer() {
-    echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-    echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-  }
+  #add_ppa ppa:webupd8team/java
+  #apt_packages+=(oracle-java8-installer)
+ # function preinstall_oracle-java8-installer() {
+ #   echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+ #   echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+ # }
 
   add_ppa ppa:nathan-renniewaldock/flux
   apt_packages+=(fluxgui)
@@ -163,7 +162,6 @@ if is_ubuntu_desktop; then
     rofi
     openssh-server
     shutter
-    unity-tweak-tool
     vlc
     xclip
     zenmap
@@ -186,8 +184,8 @@ if is_ubuntu_desktop; then
   apt_packages+=(grub-customizer)
 
   # https://support.gitkraken.com/how-to-install
-  deb_installed+=(/usr/bin/gitkraken)
-  deb_sources+=(https://release.gitkraken.com/linux/gitkraken-amd64.deb)
+ # deb_installed+=(/usr/bin/gitkraken)
+ # deb_sources+=(https://release.gitkraken.com/linux/gitkraken-amd64.deb)
 
   # http://askubuntu.com/a/852727
   apt_packages+=(cabextract)
@@ -224,8 +222,8 @@ function other_stuff() {
     )
   fi
   # Install misc bins from zip file.
-  install_from_zip ngrok 'https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip'
-  install_from_zip terraform 'https://releases.hashicorp.com/terraform/0.9.2/terraform_0.9.2_linux_amd64.zip'
+ # install_from_zip ngrok 'https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip'
+ # install_from_zip terraform 'https://releases.hashicorp.com/terraform/0.9.2/terraform_0.9.2_linux_amd64.zip'
 }
 
 ####################

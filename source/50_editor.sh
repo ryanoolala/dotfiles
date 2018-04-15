@@ -7,7 +7,7 @@ if [[ ! "$SSH_TTY" ]]; then
     # [[ ! "$TMUX" ]] && EDITOR=mvim
     EDITOR=mvim
   else
-    EDITOR=gvim
+    EDITOR=nvim
   fi
   export LESSEDIT="$EDITOR ?lm+%lm -- %f"
   export GIT_EDITOR="$EDITOR -f"
