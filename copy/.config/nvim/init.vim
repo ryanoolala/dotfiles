@@ -1,51 +1,46 @@
+noremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+set noswapfile
+set tabstop=2 shiftwidth=2 expandtab
+noremap ; l
+noremap l k
+noremap k j
+noremap j h
 
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
+call plug#begin("~/.config/nvim/plugged")
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+" Plug 'francoiscabrol/ranger.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'w0rp/ale'
+Plug 'flazz/vim-colorschemes'
+call plug#end()
+
+if &t_Co > 2 || has("gui_running")
+  set number! relativenumber! 
+  set wildmenu
+  set wildmode=longest,list,full
+  syntax on
+  set hlsearch
 endif
 
-if has('nvim') || has('termguicolors')
-  set termguicolors
-endif
+colorscheme Tomorrow-Night-Eighties
+" let g:ale_fixers = {
+"   'javascript': ['eslint'],
+" }
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
 
-" Required:
-set runtimepath+=/Users/gohjiaquan/.local/share/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('/Users/gohjiaquan/.local/share/dein')
-  call dein#begin('/Users/gohjiaquan/.local/share/dein')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('/Users/gohjiaquan/.local/share/dein/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-  call dein#add('MaxSt/FlatColor')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('cocopon/iceberg.vim')
-  call dein#add('vifm/vifm')
-  call dein#add('ctrlpvim/ctrlp.vim')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-"Ctrl + ] to change tabs
-nmap <C-]> :tabn<cr>
-nmap <C-[> :tabp<cr>
-nmap n :m +1<CR>
-nmap m :m -2<CR>
-set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
-
-" Required:
-filetype plugin indent on
-syntax enable
-colorscheme Flatcolor
-"colorscheme Iceberg
-let g:lightline = { 'colorscheme': 'flatcolor' }
