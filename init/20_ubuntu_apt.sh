@@ -39,9 +39,11 @@ apt_packages+=(
   nmap
   postgresql
   python-pip
+  ranger
   silversearcher-ag
   telnet
   tree
+  w3m-img
 #  zsh
 )
 
