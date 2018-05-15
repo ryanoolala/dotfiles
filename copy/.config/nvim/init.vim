@@ -7,10 +7,10 @@ noremap ; l
 noremap l k
 noremap k j
 noremap j h
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <A-j> <C-w>h
+nnoremap <A-k> <C-w>j
+nnoremap <A-l> <C-w>k
+nnoremap <A-;> <C-w>l
 
 call plug#begin("~/.config/nvim/plugged")
 if has('nvim')
@@ -24,6 +24,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Plug 'francoiscabrol/ranger.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'mileszs/ack.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
@@ -40,11 +41,22 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 colorscheme Tomorrow-Night-Eighties
+
 " let g:ale_fixers = {
 "   'javascript': ['eslint'],
 " }
+
+" Close nvim if nerdtree is the only open window
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 let NERDTreeMapActivateNode='<space>'
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+" Open NerdTree when nvim opens a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" Auto exit if NerdTree is the only window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
