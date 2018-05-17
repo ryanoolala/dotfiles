@@ -1,0 +1,13 @@
+[Unit]
+Description=Starts i3lock at suspend time
+Before=sleep.target
+
+[Service]
+User=ryangoh
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock-fancy
+ExecStartPost=/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target
