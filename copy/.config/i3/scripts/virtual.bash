@@ -45,7 +45,7 @@ fi
 if is_installed docker; then
     docker=$(docker ps | sed -n '1!p' | wc -l)
     if [[ $docker != 0 ]]; then
-        docker="DKR: $docker"
+        docker=" DKR: $docker"
     else
         unset docker
     fi

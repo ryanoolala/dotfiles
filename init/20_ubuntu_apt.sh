@@ -44,7 +44,7 @@ apt_packages+=(
   telnet
   tree
   w3m-img
-#  zsh
+  zsh
 )
 
 apt_packages+=(vim)
@@ -66,7 +66,7 @@ apt_packages+=(rvm)
 # https://github.com/rbenv/ruby-build/wiki
 apt_packages+=(
   autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
-  libncurses5-dev libffi-dev libgdbm3 libgdbm-dev zlib1g-dev
+  libncurses5-dev libffi-dev libgdbm3 libgdbm-dev software-properties-common  zlib1g-dev
 )
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-16-04
@@ -102,10 +102,10 @@ if is_ubuntu_desktop; then
   apt_packages+=(messengerfordesktop)
 
   # https://www.spotify.com/us/download/linux/
-  apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886')
-  apt_source_files+=(spotify)
-  apt_source_texts+=("deb http://repository.spotify.com stable non-free")
-  apt_packages+=(spotify-client)
+  #apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886')
+  #apt_source_files+=(spotify)
+  #apt_source_texts+=("deb http://repository.spotify.com stable non-free")
+  #apt_packages+=(spotify-client)
 
   # https://tecadmin.net/install-oracle-virtualbox-on-ubuntu/
   apt_keys+=(https://www.virtualbox.org/download/oracle_vbox_2016.asc)
@@ -127,10 +127,10 @@ if is_ubuntu_desktop; then
   apt_packages+=(sublime-text)
 
   #http://howtoubuntu.org/how-to-install-spotify-in-ubuntu
-  apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410')
-  apt_source_files+=(spotify)
-  apt_source_texts+=("deb http://repository.spotify.com stable non-free")
-  apt_packages+=(spotify-client)
+  #apt_keys+=('--keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410')
+  #apt_source_files+=(spotify)
+  #apt_source_texts+=("deb http://repository.spotify.com stable non-free")
+  #apt_packages+=(spotify-client)
 
   #http://www.webupd8.org/2015/01/install-official-telegram-desktop-app.html
   add_ppa ppa:atareao/telegram
@@ -154,6 +154,10 @@ if is_ubuntu_desktop; then
 
    add_ppa ppa:plushuang-tw/uget-stable
    apt_packages+=(uget)
+
+
+   add_ppa ppa:rael-gc/rvm
+   apt_packages+=(rvm)
 
   # Misc
   apt_packages+=(adb fastboot)

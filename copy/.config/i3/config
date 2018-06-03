@@ -124,7 +124,7 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $workspace10
-
+bindsym $mod+m move workspace to output left
 #assign [class="Spotify"] $workspace10
 for_window [class="Spotify"] move to workspace $workspace10
 for_window [class="Messenger for Desktop"] move to workspace $workspace5
@@ -200,7 +200,17 @@ bar {
          	focused_workspace  $bg-color          $bg-color          $text-color
                 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
 	        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-                  						}
+  		}
+  font pango:System San Francisco Display 10
+  colors {
+    separator            #666666
+    background           #222222
+    statusline           #dddddd
+    focused_workspace    #0088CC #0088CC #ffffff
+    active_workspace     #333333 #333333 #ffffff
+    inactive_workspace   #333333 #333333 #888888
+    urgent_workspace     #2f343a #900000 #ffffff
+  }
 }
 
 bindsym $mod+d exec rofi -show run -width 50 -opacity "85" -font "System San Francisco Display 12"
@@ -220,6 +230,8 @@ exec compton -f
 # Keys
 exec_always xmodmap -e "clear lock" #disable caps lock switch
 exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
+# scrot & gimp - select window or rectangle
+bindsym $mod+p exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
 
 #exec_always feh --bg-scale /home/ryangoh/Pictures/IMG_0277-Edit-2.jpg
 #exec --no-startup-id dbus-send \

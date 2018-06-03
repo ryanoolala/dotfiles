@@ -20,17 +20,42 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-let g:deoplete#enable_at_startup = 1
 
-" Plug 'francoiscabrol/ranger.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mileszs/ack.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'flazz/vim-colorschemes'
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
 call plug#end()
+
+" neosnippet
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 if &t_Co > 2 || has("gui_running")
   set number! relativenumber! 
@@ -40,11 +65,23 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-colorscheme Tomorrow-Night-Eighties
+" colorscheme Tomorrow-Night-Eighties
+let g:seoul256_background = 233
+colorscheme seoul256
 
-" let g:ale_fixers = {
-"   'javascript': ['eslint'],
-" }
+" ale linter
+let g:ale_fixers = {
+      \  'javascript': ['eslint'],
+      \  'terraform': ['tflint'],
+      \}
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_delay = 600
+
+" ctrlp
+set runtimepath^=~/.config/nvim/bundle/ctrlp.vim
+let g:ctrlp_show_hidden = 1
 
 " Close nvim if nerdtree is the only open window
 map <C-n> :NERDTreeToggle<CR>
@@ -60,3 +97,55 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " Auto exit if NerdTree is the only window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
+
+
+" Terraform stuff
+source ~/.config/nvim/src/terraform.vim
+
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" tab for different file types
+" shell (tab width 2 chr)
+autocmd FileType sh set sw=2
+autocmd FileType sh set ts=2
+autocmd FileType sh set sts=2
+autocmd FileType sh set textwidth=0 expandtab
+autocmd FileType sh map <buffer> <C-S-e> :w<CR>:!/bin/sh % <CR>
+" ruby (tab width 2 chr)
+autocmd FileType ruby set sw=2
+autocmd FileType ruby set ts=2
+autocmd FileType ruby set sts=2
+autocmd FileType ruby map <buffer> <C-S-e> :w<CR>:!/usr/bin/env ruby % <CR>
+" HTML (tab width 2 chr, no wrapping)
+autocmd FileType html,htmldjango set sw=2
+autocmd FileType html,htmldjango set ts=2
+autocmd FileType html,htmldjango set sts=2
+autocmd FileType html,htmldjango set textwidth=0 expandtab
+" YAML (tab width 2 chr, no wrapping)
+autocmd FileType yaml set sw=2
+autocmd FileType yaml set ts=2
+autocmd FileType yaml set sts=2
+autocmd FileType yaml set textwidth=0 expandtab
+" terraform (tab width 2 chr, no wrapping)
+autocmd FileType tf set sw=2
+autocmd FileType tf set ts=2
+autocmd FileType tf set sts=2
+autocmd FileType tf set textwidth=0 expandtab
+" Python (tab width 4 chr)
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4
+autocmd FileType python map <buffer> <C-S-e> :w<CR>:!/usr/bin/env python % <CR>
+" CSS (tab width 2 chr)
+autocmd FileType css set sw=2
+autocmd FileType css set ts=2
+autocmd FileType css set sts=2
+" JavaScript (tab width 2 chr)
+autocmd FileType javascript set sw=2
+autocmd FileType javascript set ts=2
+autocmd FileType javascript set sts=2
+autocmd FileType javascript set textwidth=0 expandtab
+autocmd FileType javascript map <buffer> <C-S-e> :w<CR>:!/usr/bin/env node % <CR>
