@@ -19,3 +19,6 @@ function dotfiles() {
 }
 
 src
+
+# added by travis gem
+[ -f /home/ryangoh/.travis/travis.sh ] && source /home/ryangoh/.travis/travis.sh
