@@ -15,7 +15,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:FiraCode-Regular 11
-font pango:System San Francisco Display 12
+font pango:System San Francisco Display 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -130,6 +130,8 @@ for_window [class="Spotify"] move to workspace $workspace10
 for_window [class="Messenger for Desktop"] move to workspace $workspace5
 assign [class="TelegramDesktop"] $workspace5
 
+bindsym $mod+Shift+p exec --no-startup-ip i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -176,15 +178,17 @@ bindsym XF86Tools exec XDG_CURRENT_DESKTOP="GNOME" gnome-control-center
 
 # THEMEING
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
+set $bg-color 	         #1e1f22
+set $bg-color-on	 #ff4b33
+#ff7212
+set $inactive-bg-color   #1e1f22
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.focused          $bg-color          $bg-color          $bg-color-on          $bg-color-on
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent $urgent-bg-color $urgent-bg-color $text-color #00ff00
@@ -192,28 +196,28 @@ client.urgent $urgent-bg-color $urgent-bg-color $text-color #00ff00
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command SCRIPT_DIR="/home/ryangoh/.config/i3/scripts" i3blocks -c /home/ryangoh/.config/i3/i3blocks.conf
-	colors {
-		background $bg-color
-	    	separator #757575
-#                border             background         text
-         	focused_workspace  $bg-color          $bg-color          $text-color
-                inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-	        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-  		}
-  font pango:System San Francisco Display 10
+  status_command SCRIPT_DIR="/home/ryangoh/.config/i3/scripts" i3blocks -c /home/ryangoh/.config/i3/i3blocks.conf
   colors {
-    separator            #666666
-    background           #222222
-    statusline           #dddddd
-    focused_workspace    #0088CC #0088CC #ffffff
-    active_workspace     #333333 #333333 #ffffff
-    inactive_workspace   #333333 #333333 #888888
-    urgent_workspace     #2f343a #900000 #ffffff
+    background $bg-color
+    separator #666666
+    #                  border             background         text
+    focused_workspace  $bg-color-on          $bg-color          $text-color
+    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+    urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
   }
+  font pango:System San Francisco Display 9
+  #colors {
+    #separator            #666666
+    #background           #222222
+    #statusline           #dddddd
+    #focused_workspace    #0088CC #0088CC #ffffff
+    #active_workspace     #333333 #333333 #ffffff
+    #inactive_workspace   #333333 #333333 #888888
+    #urgent_workspace     #2f343a #900000 #ffffff
+  #}
 }
 
-bindsym $mod+d exec rofi -show run -width 50 -opacity "85" -font "System San Francisco Display 12"
+bindsym $mod+d exec rofi -show run -width 50 -opacity "85" -font "System San Francisco Display 8"
 
 
 # exits i3 (logs you out of your X session)
@@ -230,8 +234,11 @@ exec compton -f
 # Keys
 exec_always xmodmap -e "clear lock" #disable caps lock switch
 exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
-# scrot & gimp - select window or rectangle
-bindsym $mod+p exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
+
+# Screen Shots
+bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
+bindsym Control+Print exec gnome-screenshot -i
+
 
 #exec_always feh --bg-scale /home/ryangoh/Pictures/IMG_0277-Edit-2.jpg
 #exec --no-startup-id dbus-send \
